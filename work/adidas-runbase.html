@@ -4,6 +4,40 @@
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet"><link rel="stylesheet" href="../style.css"></head>
 <body><div class="frame" aria-hidden="true"></div>
 <header class="site"><a class="name" href="../index.html">Yolandé Gouws</a><nav><a href="../index.html">Work</a><a href="../about.html">About</a></nav></header>
-<main><article class="work"><figure><img src="../img/adidas-runbase/01.jpg" width="1500" height="2000" alt="Adidas Runbase" ></figure><div class="meta"><h1><em>Adidas Runbase</em>, <span class="yr">2018</span></h1><p class="cap">Parley ocean waste plastic thread, wood, polished stainless steel, love, time.</p><div class="text"><p>Installation for Adidas Runbase, Berlin.</p></div></div><div class="gallery"><figure><img src="../img/adidas-runbase/02.jpg" width="1500" height="2000" alt="Adidas Runbase" loading="lazy"></figure><figure><img src="../img/adidas-runbase/03.jpg" width="1500" height="2000" alt="Adidas Runbase" loading="lazy"></figure><figure><img src="../img/adidas-runbase/04.jpg" width="1500" height="2000" alt="Adidas Runbase" loading="lazy"></figure><figure><img src="../img/adidas-runbase/05.jpg" width="1500" height="2000" alt="Adidas Runbase" loading="lazy"></figure></div><nav class="pn"><span><a href="yg18yb01.html">← Cold yellow warm yellow cold blue</a></span><a class="all" href="../index.html">All work</a><span><a href="yg17p01.html">Subversive emotions →</a></span></nav></article></main>
+<main><article class="work"><figure><img src="../img/adidas-runbase/01.jpg" width="1500" height="2000" alt="Adidas Runbase" ></figure><div class="meta"><h1><em>Adidas Runbase</em>, <span class="yr">2018</span></h1><p class="cap">Parley ocean waste plastic thread, wood, polished stainless steel, love, time.</p><div class="text"><p>Installation for Adidas Runbase, Berlin.</p></div></div><section class="carousel" aria-label="More images"><div class="track" tabindex="0"><figure class="slide"><img src="../img/adidas-runbase/02.jpg" width="1500" height="2000" alt="Adidas Runbase, image 2 of 5" loading="lazy"></figure><figure class="slide"><img src="../img/adidas-runbase/03.jpg" width="1500" height="2000" alt="Adidas Runbase, image 3 of 5" loading="lazy"></figure><figure class="slide"><img src="../img/adidas-runbase/04.jpg" width="1500" height="2000" alt="Adidas Runbase, image 4 of 5" loading="lazy"></figure><figure class="slide"><img src="../img/adidas-runbase/05.jpg" width="1500" height="2000" alt="Adidas Runbase, image 5 of 5" loading="lazy"></figure></div><div class="cnav"><span class="count"></span><span class="btns"><button class="prev" type="button" aria-label="Previous image">←</button><button class="next" type="button" aria-label="Next image">→</button></span></div></section><script>(function(){
+var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.carousel').forEach(function(c){
+ var track=c.querySelector('.track'),slides=[].slice.call(track.children),prev=c.querySelector('.prev'),next=c.querySelector('.next'),count=c.querySelector('.count'),raf=0,anim=0;
+ function max(){return track.scrollWidth-track.clientWidth}
+ function idx(){var x=track.scrollLeft;if(x>=max()-2)return slides.length-1;var b=0,d=1e9;slides.forEach(function(s,i){var dd=Math.abs(s.offsetLeft-x);if(dd<d){d=dd;b=i}});return b}
+ function nearest(x){if(x>=max()-2)return slides.length-1;var b=0,d=1e9;slides.forEach(function(s,i){var dd=Math.abs(s.offsetLeft-x);if(dd<d){d=dd;b=i}});return b}
+ function pad(n){return(n<10?'0':'')+n}
+ function update(){var i=idx();count.textContent=pad(i+1)+' / '+pad(slides.length);prev.disabled=track.scrollLeft<=2;next.disabled=track.scrollLeft>=max()-2}
+ function ease(t){return 1-Math.pow(1-t,4)}
+ function animateTo(x,dur){cancelAnimationFrame(anim);x=Math.max(0,Math.min(max(),x));
+  if(reduce){track.scrollLeft=x;return}
+  var from=track.scrollLeft,dist=x-from,t0=null;dur=dur||Math.min(1300,Math.max(650,Math.abs(dist)*0.9));
+  track.style.scrollSnapType='none';
+  function step(t){if(t0===null)t0=t;var p=Math.min(1,(t-t0)/dur);track.scrollLeft=from+dist*ease(p);
+   if(p<1)anim=requestAnimationFrame(step);else{track.style.scrollSnapType='';update()}}
+  anim=requestAnimationFrame(step)}
+ function go(i){i=Math.max(0,Math.min(slides.length-1,i));animateTo(slides[i].offsetLeft)}
+ prev.addEventListener('click',function(){go(idx()-1)});
+ next.addEventListener('click',function(){go(idx()+1)});
+ track.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(idx()+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(idx()-1)}});
+ track.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(update)},{passive:true});
+ // mouse drag with momentum
+ var down=false,sx=0,sl=0,lx=0,lt=0,v=0,moved=false;
+ track.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0)return;cancelAnimationFrame(anim);down=true;moved=false;sx=lx=e.clientX;sl=track.scrollLeft;lt=performance.now();v=0;track.style.scrollSnapType='none';track.classList.add('dragging')});
+ window.addEventListener('pointermove',function(e){if(!down)return;var now=performance.now(),dx=e.clientX-lx;if(Math.abs(e.clientX-sx)>4)moved=true;
+  v=0.8*(dx/Math.max(1,now-lt))+0.2*v;lx=e.clientX;lt=now;track.scrollLeft=sl-(e.clientX-sx)});
+ window.addEventListener('pointerup',function(){if(!down)return;down=false;track.classList.remove('dragging');
+  var proj=track.scrollLeft-v*380;animateTo(slides[nearest(proj)].offsetLeft)});
+ track.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+ slides.forEach(function(s){var im=s.querySelector('img');if(im)im.draggable=false});
+ window.addEventListener('resize',update);update();
+});
+})();
+</script><nav class="pn"><span><a href="yg18yb01.html">← Cold yellow warm yellow cold blue</a></span><a class="all" href="../index.html">All work</a><span><a href="yg17p01.html">Subversive emotions →</a></span></nav></article></main>
 <footer class="site">© Yolandé Gouws</footer>
 </body></html>

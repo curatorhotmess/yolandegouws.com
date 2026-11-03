@@ -63,3 +63,18 @@ nav a{margin:0 22px 0 0}
 .text,.about{font-size:19px}
 .pn{grid-template-columns:1fr 1fr;font-size:17px}.pn .all{display:none}
 }
+/* carousel */
+.carousel{margin-top:clamp(8px,2vw,24px)}
+.track{position:relative;display:flex;align-items:center;gap:clamp(16px,2.4vw,32px);overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;outline:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track:focus-visible{outline:1px solid var(--line);outline-offset:6px}
+.track.dragging{cursor:grabbing;user-select:none}
+.slide{flex:0 0 auto;margin:0;scroll-snap-align:start}
+.slide img{height:min(72vh,760px);width:auto;max-width:min(86vw,1180px);object-fit:contain;-webkit-user-drag:none}
+.cnav{display:flex;align-items:center;justify-content:space-between;margin-top:20px;font-size:12px;letter-spacing:.16em;font-variant-numeric:tabular-nums}
+.cnav .btns{display:flex;gap:10px}
+.cnav button{appearance:none;background:none;border:1px solid var(--line);color:var(--ink);width:44px;height:44px;font:inherit;font-size:16px;letter-spacing:0;cursor:pointer;transition:opacity .3s}
+.cnav button:disabled{opacity:.25;cursor:default}
+.cnav button:not(:disabled):hover{background:var(--ink);color:var(--bg)}
+.cnav button:focus-visible{outline:1px solid var(--line);outline-offset:3px}
+@media (max-width:600px){.slide img{height:auto;max-height:62vh;max-width:78vw}}
