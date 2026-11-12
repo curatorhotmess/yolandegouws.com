@@ -111,3 +111,14 @@ nav a{margin:0 22px 0 0}
 .nl-row button:hover{background:var(--ink);color:var(--bg)}
 .nl-note{margin:12px 0 0!important;font-size:13px;color:var(--muted)}
 .hp{position:absolute;left:-9999px}
+/* landing intro */
+.intro{position:fixed;inset:0;z-index:15;background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity 1s cubic-bezier(.45,0,.2,1)}
+.intro canvas{position:absolute;inset:0}
+.intro-words{position:relative}
+.intro-name,.intro-ghost{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5.6vw,83px);color:var(--ink);white-space:nowrap}
+.intro-name{position:relative;opacity:0;will-change:opacity}
+.intro-ghost{position:absolute;inset:0;opacity:0;will-change:opacity}
+.intro-skip{position:absolute;right:calc(var(--gap) + 24px);bottom:calc(var(--gap) + 20px);appearance:none;background:none;border:0;font:inherit;font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:10px}
+.intro-skip:hover{color:var(--ink)}
+.intro-out{opacity:0;pointer-events:none}
+html.intro-on,html.intro-on body{overflow:hidden}
