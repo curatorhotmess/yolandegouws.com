@@ -50,7 +50,7 @@ function frame(t){if(done)return;if(T0===null)T0=t-2000;var s=(t-T0)/D;
  gd.setAttribute('scale',(60*Math.pow(1-g,1.3)).toFixed(1));
  gbl.setAttribute('stdDeviation',(7-3.5*g).toFixed(2));
  gh.style.opacity=(Math.max(fin,0.6)*(0.17+0.15*g)).toFixed(3);   // the soft name stays in the background throughout
- if(s<0.8||e<1)requestAnimationFrame(frame);else setTimeout(end,700)}
+ if(e<1)requestAnimationFrame(frame);else end()}
 function end(){if(done)return;done=true;nm.style.filter='none';nm.style.opacity=1;nm.style.maskImage=nm.style.webkitMaskImage='none';o.classList.add('intro-out');document.documentElement.classList.remove('intro-on');
  setTimeout(function(){o.remove()},1100)}
 o.addEventListener('click',end);window.addEventListener('keydown',function k(e){if(e.key==='Escape'||e.key==='Enter'||e.key===' '){end();window.removeEventListener('keydown',k)}});
